@@ -49,8 +49,11 @@ const LogRegForm = (props) => {
             if (result.data.message === "Register Success") {
                 console.log(result.data)
                 alert(result.data.message)
-                // props.closer()
-                // props.history.push("/")
+                resetFields()
+                props.history.push(({
+                    pathname: '/LogReg',
+                    state: { val: true }
+                }))
                 return
             } else {
                 alert(result.data.message)
@@ -78,11 +81,11 @@ const LogRegForm = (props) => {
                     </div>
                     <div class="mb-3">
                         <label class="form-label">User Name</label>
-                        <input type="text" class="form-control" placeholder="Your User Name" ref={userNameInput} autoComplete="on"/>
+                        <input type="text" class="form-control" placeholder="Your User Name" ref={userNameInput} autoComplete="on" />
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-control" placeholder="Your Password" ref={passwordInput} autoComplete="on"/>
+                        <input type="password" class="form-control" placeholder="Your Password" ref={passwordInput} autoComplete="on" />
                     </div>
                     <button type="button" className="btn btn-dark" onClick={!props?.location?.state?.val ? register : signIn}>{!props?.location?.state?.val ? "Register" : "Login"}</button>
                 </form>
