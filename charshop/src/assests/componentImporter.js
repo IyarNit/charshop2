@@ -25,7 +25,7 @@ import Backstory from "../components/Backstory"
 import Die20Icon from "../components/Die20Icon"
 import SwordIcon from "../components/SwordIcon"
 import Navbar from "../components/Navbar"
-
+import Logout from "../components/Logout"
 
 
 
@@ -57,5 +57,6 @@ export {
     Backstory,
     Die20Icon,
     SwordIcon,
-    Navbar
+    Navbar,
+    Logout
 }

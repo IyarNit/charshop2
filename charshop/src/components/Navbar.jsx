@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom"
+import { Logout } from "../assests/componentImporter"
 const Navbar = (props) => {
     ////////Hooks////////////
 
@@ -21,10 +22,10 @@ const Navbar = (props) => {
                             <Link className="nav-link active" to="/">Main</Link>
                         </li>
                         <li className="nav-item">
-                        <Link className="nav-link active" to="/About">About Us</Link>
+                            <Link className="nav-link active" to="/About">About Us</Link>
                         </li>
                         <li className="nav-item">
-                        <Link className="nav-link active" to="/Privacy">Privacy Policy</Link>
+                            <Link className="nav-link active" to="/Privacy">Privacy Policy</Link>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,8 +43,8 @@ const Navbar = (props) => {
                     </ul>
                     <form className="d-flex">
                         <Link className="nav-link" to={{ pathname: '/LogReg', state: { val: true } }}><button className="btn btn-outline-success" type="button">Login</button></Link>
-
                         <Link className="nav-link" to={{ pathname: '/LogReg', state: { val: false } }}><button className="btn btn-outline-success" type="button">Register</button></Link>
+                        <Logout />
                     </form>
                 </div>
             </div>
