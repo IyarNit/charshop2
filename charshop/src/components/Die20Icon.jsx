@@ -1,6 +1,6 @@
 import React from 'react';
-import die from "../assests/die20.svg"
-
+import die20 from "../assests/die20.svg"
+import sword from "../assests/sword.svg"
 
 const Die20Icon = (props) => {
     ////////Hooks////////////
@@ -11,7 +11,7 @@ const Die20Icon = (props) => {
 
     /////////Jsx///////////
     return (
-        <img src={die} alt="die20Icon" height={props.height} width={props.width} onClick={props.click} style={{cursor:"pointer"}}/>
+        <img src={props.src} alt={props.alt} height={props.height} width={props.width} onClick={props.click} style={{cursor:"pointer"}}/>
 
     )
 }
