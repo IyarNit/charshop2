@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux"
-import { currentUser } from "../store/actions/actionsConfig"
+import { currentUser,noLongerAdmin } from "../store/actions/actionsConfig"
 import { withRouter } from "react-router-dom"
 const Logout = (props) => {
     ////////Hooks////////////
@@ -8,24 +8,28 @@ const Logout = (props) => {
 
     ////////Functions////////////
     const signOff = () => {
+        props.dispatch(noLongerAdmin({
+            isAdmin: false
+        }))
         props.dispatch(currentUser({}))
         localStorage.removeItem("token")
+        props.history.push("/")
     }
 
     /////////Jsx///////////
     return (
-    <>
+        <>
 
-       {!props.currentUser ? null: <li className="nav-link" style={{ cursor: "pointer", textDecoration: "none", color: "white" }} onClick={signOff}><button type="button" className="btn btn-outline-success">Logout</button></li>}
+           <li className="nav-link" style={{ cursor: "pointer", textDecoration: "none", color: "white" }} onClick={signOff}><button type="button" className="btn btn-outline-success">Logout</button></li>
 
-    </>
+        </>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
         currentUser: state.currentUser,
-        character: state.character
+        isAdmin: state.isAdmin
     }
 }
 

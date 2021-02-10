@@ -6,7 +6,8 @@ export const SET_PLAYER_INTELLIGENCE = "SET_PLAYER_INTELLIGENCE"
 export const SET_PLAYER_WISDOM = "SET_PLAYER_WISDOM"
 export const SET_PLAYER_CHARISMA = "SET_PLAYER_CHARISMA"
 export const CURRENT_USER = "CURRENT_USER"
-
+export const IS_ADMIN = "IS_ADMIN"
+export const NO_MORE_ADMIN = "NO_MORE_ADMIN"
 
 export const setPlayerProf = (payload) => {
     return {
@@ -57,6 +58,20 @@ export const addPlayerChaMod = (payload) => {
 export const currentUser = (payload) => {
     return {
         type: CURRENT_USER,
+        payload: payload
+    }
+}
+
+export const isAdmin = (payload) => {
+    return {
+        type: IS_ADMIN,
+        payload: payload
+    }
+}
+
+export const noLongerAdmin = (payload) => {
+    return {
+        type: NO_MORE_ADMIN,
         payload: payload
     }
 }
