@@ -5,13 +5,12 @@ import sword from "../assests/sword.svg"
 const Die20Icon = (props) => {
     ////////Hooks////////////
 
-
     ////////Functions////////////
 
 
     /////////Jsx///////////
     return (
-        <img src={props.src} alt={props.alt} height={props.height} width={props.width} onClick={props.click} style={{cursor:"pointer"}}/>
+        <img src={props.src} alt={props.alt} height={props.height} width={props.width} onClick={props.click} style={{ cursor: "pointer" }} />
 
     )
 }

@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { connect } from "react-redux"
 import { Modal } from "../assests/componentImporter"
-import { DieInterface, Die20Icon, SwordIcon } from "../assests/componentImporter"
-
+import { DieInterface,Icons} from "../assests/componentImporter"
+import sword from "../assests/sword.svg"
 const AttacksHolderComp = (props) => {
     ////////Hooks////////////
     // console.log("AttacksHolderComp", props)
@@ -194,7 +194,7 @@ const AttacksHolderComp = (props) => {
 
                 {/* <button type="button" onClick={() => { setShowModal(true) }} >Attack</button> */}
             </div>
-            <SwordIcon click={() => { setShowModal(true) }} height="40" width="30" />
+            <Icons src={sword} alt="swordIcon" click={() => { setShowModal(true) }} height="40" width="30" />
             <button type="button" name={props.weapon.name} className="btn btn-danger" onClick={(e) => { weaponDeleter(e) }}> Discard </button>
             {
                 !showModal ? null :

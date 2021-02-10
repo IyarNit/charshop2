@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux'
-import { Modal, Die20Icon } from "../assests/componentImporter"
-
+import { Modal,Icons } from "../assests/componentImporter"
+import die20 from "../assests/die20.svg"
 const SavingThrows = (props) => {
     ////////Hooks////////////
     const strenghtRef = useRef("")
@@ -83,7 +83,7 @@ const SavingThrows = (props) => {
                     </div>
                 </div>
                 <div className="col">
-                    <Die20Icon click={(e) => { calculateRoll(strenghtRef, e, props.playerStrenghtMod) }} height="40" width="30" />
+                    <Icons src={die20} alt="dieIcon" click={(e) => { calculateRoll(strenghtRef, e, props.playerStrenghtMod) }} height="40" width="30" />
                     <button type="button" name="advantage" className="btn btn-danger" onClick={(e) => { calculateRoll(strenghtRef, e, props.playerStrenghtMod) }} style={{ marginLeft: "20px" }}>X2</button>
                 </div>
             </div>
@@ -98,7 +98,7 @@ const SavingThrows = (props) => {
                 </div>
 
                 <div className="col">
-                    <Die20Icon click={(e) => { calculateRoll(dextirityRef, e, props.playerDextirityMod) }} height="40" width="30" />
+                    <Icons src={die20} alt="dieIcon" click={(e) => { calculateRoll(dextirityRef, e, props.playerDextirityMod) }} height="40" width="30" />
                     <button type="button" name="advantage" className="btn btn-danger" onClick={(e) => { calculateRoll(dextirityRef, e, props.playerDextirityMod) }} style={{ marginLeft: "20px" }}>X2</button>
                 </div>
             </div>
@@ -112,7 +112,7 @@ const SavingThrows = (props) => {
                     </div>
                 </div>
                 <div className="col">
-                    <Die20Icon click={(e) => { calculateRoll(constitutionRef, e, props.playerConstitutionMod) }} height="40" width="30" />
+                    <Icons src={die20} alt="dieIcon" click={(e) => { calculateRoll(constitutionRef, e, props.playerConstitutionMod) }} height="40" width="30" />
                     <button type="button" name="advantage" className="btn btn-danger" onClick={(e) => { calculateRoll(constitutionRef, e, props.playerConstitutionMod) }} style={{ marginLeft: "20px" }}>X2</button>
                 </div>
             </div>
@@ -126,7 +126,7 @@ const SavingThrows = (props) => {
                     </div>
                 </div>
                 <div className="col">
-                    <Die20Icon click={(e) => { calculateRoll(intelligenceRef, e, props.playerIntelligenceMod) }} height="40" width="30" />
+                    <Icons src={die20} alt="dieIcon" click={(e) => { calculateRoll(intelligenceRef, e, props.playerIntelligenceMod) }} height="40" width="30" />
                     <button type="button" name="advantage" className="btn btn-danger" onClick={(e) => { calculateRoll(intelligenceRef, e, props.playerIntelligenceMod) }} style={{ marginLeft: "20px" }}>X2</button>
                 </div>
             </div>
@@ -141,7 +141,7 @@ const SavingThrows = (props) => {
                 </div>
 
                 <div className="col">
-                    <Die20Icon click={(e) => { calculateRoll(wisdomRef, e, props.playerWisdomMod) }} height="40" width="30" />
+                    <Icons src={die20} alt="dieIcon" click={(e) => { calculateRoll(wisdomRef, e, props.playerWisdomMod) }} height="40" width="30" />
                     <button type="button" name="advantage" className="btn btn-danger" onClick={(e) => { calculateRoll(wisdomRef, e, props.playerWisdomMod) }} style={{ marginLeft: "20px" }}>X2</button>
                 </div>
             </div>
@@ -155,7 +155,7 @@ const SavingThrows = (props) => {
                     </div>
                 </div>
                 <div className="col">
-                    <Die20Icon click={(e) => { calculateRoll(charismaRef, e, props.playerCharismaMod) }} height="40" width="30" />
+                    <Icons src={die20} alt="dieIcon" click={(e) => { calculateRoll(charismaRef, e, props.playerCharismaMod) }} height="40" width="30" />
                     <button type="button" name="advantage" className="btn btn-danger" onClick={(e) => { calculateRoll(charismaRef, e, props.playerCharismaMod) }} style={{ marginLeft: "20px" }}>X2</button>
                 </div>
                 <h5>Saving Throws</h5>

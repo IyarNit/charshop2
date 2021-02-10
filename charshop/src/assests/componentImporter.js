@@ -22,8 +22,7 @@ import AlliesOrganizations from "../components/AlliesOrganizations"
 import AdditionalFeaturesTraits from "../components/AdditionalFeaturesTraits"
 import Treasure from "../components/Treasure"
 import Backstory from "../components/Backstory"
-import Die20Icon from "../components/Die20Icon"
-import SwordIcon from "../components/SwordIcon"
+import Icons from "../components/Icons"
 import Navbar from "../components/Navbar"
 import Logout from "../components/Logout"
 
@@ -55,8 +54,7 @@ export {
     AdditionalFeaturesTraits,
     Treasure,
     Backstory,
-    Die20Icon,
-    SwordIcon,
+    Icons,
     Navbar,
     Logout
 }
