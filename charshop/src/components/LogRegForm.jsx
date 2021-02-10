@@ -91,6 +91,7 @@ const LogRegForm = (props) => {
     )
 }
 
+
 const mapStateToProps = (state) => {
     return {
         currentUser: state.currentUser,

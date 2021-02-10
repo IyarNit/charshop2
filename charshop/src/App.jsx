@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 import LogRegForm from "./components/LogRegForm"
 import { Main, Navbar } from "../src/assests/componentImporter"
 
+
 function App() {
   return (
     <div className="App" style={{ margin: "auto", width: "100%" }}>

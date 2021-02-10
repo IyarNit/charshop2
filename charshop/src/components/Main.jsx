@@ -10,8 +10,8 @@ const Main = (props) => {
 
     /////////Jsx///////////
     return (
-        <div style={{width:"90%",left:"5%",position:"relative"}}>
-            <h1 className="centerText">Main Page</h1>
+        <div style={{width:"90%",left:"5%",position:"relative"}} className="d-flex flex-wrap">
+            <h1 className="centerText">U WOT M8?!</h1>
             <CharacterDetails />
             <ProficiencyInspiration />
             <SavingThrows />
