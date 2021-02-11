@@ -4,14 +4,14 @@ import { Redirect } from "react-router-dom"
 import axios from "axios"
 
 
-export const withAuth = (WrappedComponent) => {
+export const userAuthenticator = (WrappedComponent) => {
     return function (props) {
         const [status, setStatus] = useState("loading");
 
         useEffect(() => {
             const token = localStorage.getItem("token")
             const verify = async () => {
-                const result = await axios.get("http://localhost:4000/auth2/tokenVerify", { headers: { "Content-Type": "application/json", "authorization": token } })
+                const result = await axios.get("http://localhost:9876/tokenVerify", { headers: { "Content-Type": "application/json", "authorization": token } })
                 const { status } = result.data;
                 setStatus(status)
             }
@@ -20,7 +20,7 @@ export const withAuth = (WrappedComponent) => {
         if (!status) {
 
             localStorage.removeItem("token")
-            return <Redirect to="/Login" />
+            return <Redirect to={{ pathname: '/LogReg', state: { val: true } }} />
         }
         return <WrappedComponent {...props} />
     }

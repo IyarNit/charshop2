@@ -25,6 +25,12 @@ import Backstory from "../components/Backstory"
 import Icons from "../components/Icons"
 import Navbar from "../components/Navbar"
 import Logout from "../components/Logout"
+import CharacterList from "../components/CharacterList"
+import CharacterListChild from "../components/CharacterListChild"
+
+
+
+
 
 
 
@@ -56,5 +62,8 @@ export {
     Backstory,
     Icons,
     Navbar,
-    Logout
+    Logout,
+    CharacterList,
+    CharacterListChild
+
 }

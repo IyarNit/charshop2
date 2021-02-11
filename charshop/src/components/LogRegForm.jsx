@@ -26,7 +26,7 @@ const LogRegForm = (props) => {
                 // console.log(result.data)
                 props.dispatch(currentUser(result.data.user))
                 localStorage.setItem("token", result.data.token)
-                props.history.push("/")
+                props.history.push("/characters")
                 return
             }else {
                 alert(result.data.message)
@@ -97,6 +97,7 @@ const LogRegForm = (props) => {
 const mapStateToProps = (state) => {
     return {
         currentUser: state.currentUser,
+        isAdmin: state.isAdmin
     }
 }
 export default withRouter(connect(mapStateToProps)(LogRegForm))

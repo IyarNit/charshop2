@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-
+import { updateCharacterDetails, getCharacterDetails } from "../axiosCalls/axioscalls"
 
 const CharacterDetails = () => {
     ////////Hooks////////////
@@ -38,17 +38,17 @@ const CharacterDetails = () => {
             </div >
             <div className="row centertext">
                 <div className='col'>
-                        <label for='backgroundBox' className='form-label'>Background</label>
-                        <input type="text" ref={background} id='backgroundBox' className='form-control' />
-                    </div>
-                    <div className='col'>
-                        <label for='AlignmentBox' className='form-label'>Alignment</label>
-                        <input type="text" ref={alignment} id='AlignmentBox' className='form-control' />
-                    </div>
-                    <div className='col-2'>
-                        <label for='xpBox' className='form-label'>Experience Points</label>
-                        <input type="text" ref={experiencePoints} id='xpBox' className='form-control' />
-                    </div>
+                    <label for='backgroundBox' className='form-label'>Background</label>
+                    <input type="text" ref={background} id='backgroundBox' className='form-control' />
+                </div>
+                <div className='col'>
+                    <label for='AlignmentBox' className='form-label'>Alignment</label>
+                    <input type="text" ref={alignment} id='AlignmentBox' className='form-control' />
+                </div>
+                <div className='col-2'>
+                    <label for='xpBox' className='form-label'>Experience Points</label>
+                    <input type="text" ref={experiencePoints} id='xpBox' className='form-control' />
+                </div>
             </div>
         </div>
     )
