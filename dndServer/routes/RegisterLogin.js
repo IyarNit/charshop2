@@ -6,11 +6,15 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require('bcryptjs');
 // const { route } = require("./userAuth");
 const salt = "$2a$10$MxPcIeHj.YLc1dOwnykPiOZBs2Gzk91ydH9f2Q7GAIuRmvA/UxgSe"
+const userValidation = require("../Validations/validateUser")
+
+// activate this line to make validations work!
+// router.use(userValidation)
 
 router.post("/Register", async (req, res, next) => {
     try {
         const { userName, email, password } = req.body
-        console.log(req.body)
+        // console.log(req.body)
         const connectionToMongoDB = await pool();
         const collection = await connectionToMongoDB.db(process.env.DB_NAME).collection(process.env.USERS_COLLECTION)
         const existingUsers = await collection.find({}).toArray();
@@ -37,6 +41,7 @@ router.post("/Register", async (req, res, next) => {
 router.post("/Login", async (req, res, next) => {
     try {
         const { userName, password } = req.body
+        // console.log(req.body)
         const connectionToMongoDB = await pool();
         const collection = await connectionToMongoDB.db(process.env.DB_NAME).collection(process.env.USERS_COLLECTION)
         const existingUsers = await collection.find({}).toArray();
@@ -49,7 +54,7 @@ router.post("/Login", async (req, res, next) => {
             // const getCharacter = await getChar(findUser.email)
             // if (!getCharacter) return res.json({ message: "Error has occured. Please Contact Support" })
             // return res.json({ message: "Login Succesful", token: jwtToken, user: { ...findUser, password: null }, character: getCharacter })
-            return res.json({ message: "Login Succesful", token: jwtToken, user: { ...findUser,email:null ,password: null } })
+            return res.json({ message: "Login Succesful", token: jwtToken, user: { ...findUser, email: null, password: null } })
         }
     } catch (error) {
         console.log("userLogin catch error", error.message)

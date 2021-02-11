@@ -25,10 +25,12 @@ const LogRegForm = (props) => {
             if (result.data.message === "Login Succesful") {
                 // console.log(result.data)
                 props.dispatch(currentUser(result.data.user))
-
                 localStorage.setItem("token", result.data.token)
                 props.history.push("/")
                 return
+            }else {
+                alert(result.data.message)
+                resetFields()
             }
         }
         catch (error) {
