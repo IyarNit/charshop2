@@ -33,7 +33,7 @@ router.post("/Register", async (req, res, next) => {
         }
     }
     catch (error) {
-        console.log("getUsers catch error", error.message)
+        console.log("Register catch error", error.message)
         return res.status(401).json({ message: "invalid request" })
     }
 })
@@ -57,7 +57,7 @@ router.post("/Login", async (req, res, next) => {
             return res.json({ message: "Login Succesful", token: jwtToken, user: { ...findUser, email: null, password: null } })
         }
     } catch (error) {
-        console.log("userLogin catch error", error.message)
+        console.log("Login catch error", error.message)
     }
 
 })
