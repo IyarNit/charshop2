@@ -31,10 +31,10 @@ router.post("/characters", async (req, res, next) => {
     try {
         // console.log(req.body)
         const { character } = req.body
-        const { userName, name, profession, race } = character
+        const { userName, name, profession, race, level } = character
         const connectionToMongoDB = await pool();
         const collection = await connectionToMongoDB.db(process.env.DB_NAME).collection(process.env.CHARACTER_COLLECTION)
-        const characterToAdd = { userName: userName, characterName: name, class: profession, race: race }
+        const characterToAdd = { userName: userName, characterName: name, class: profession, race: race, level: level }
         console.log(characterToAdd)
         const data = await collection.insertOne(character);
         if (data.length === 0) return res.json({ message: "data Fetch Error" })
