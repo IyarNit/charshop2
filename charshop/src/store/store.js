@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { SET_PLAYER_PROFICIENCY, SET_PLAYER_STRENGHT, SET_PLAYER_DEXTERITY, SET_PLAYER_CONSTITUTION, SET_PLAYER_INTELLIGENCE, SET_PLAYER_WISDOM, SET_PLAYER_CHARISMA, CURRENT_USER, IS_ADMIN,NO_MORE_ADMIN } from './actions/actionsConfig';
+import { SET_PLAYER_PROFICIENCY, SET_PLAYER_STRENGHT, SET_PLAYER_DEXTERITY, SET_PLAYER_CONSTITUTION, SET_PLAYER_INTELLIGENCE, SET_PLAYER_WISDOM, SET_PLAYER_CHARISMA, CURRENT_USER, IS_ADMIN, NO_MORE_ADMIN, SET_CHARACTER,CLEAR_CHARACTER } from './actions/actionsConfig';
 
 
 const initState = {
@@ -12,7 +12,7 @@ const initState = {
     playerCharismaMod: "",
     currentUser: {},
     isAdmin: false,
-
+    currentCharacter: null
 };
 
 function reducer(state = initState, action) {
@@ -67,13 +67,19 @@ function reducer(state = initState, action) {
 
             return { ...state, currentUser: action.payload }
         }
-        
+
         case IS_ADMIN: {
             return { ...state, isAdmin: true }
         }
 
         case NO_MORE_ADMIN: {
             return { ...state, isAdmin: false }
+        }
+        case SET_CHARACTER: {
+            return { ...state, currentCharacter: action.payload }
+        }
+        case CLEAR_CHARACTER: {
+            return { ...state, currentCharacter:null }
         }
         default: return state;
 

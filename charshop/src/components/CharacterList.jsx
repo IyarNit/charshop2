@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { userAuthenticator } from "../components/TokenAuthiticator"
 import { getCharacter, createCharacter, deleteCharacter } from "../axiosCalls/axioscalls"
 import { CharacterListChild } from "../assests/componentImporter"
+
 const CharacterList = (props) => {
     ////////Hooks////////////
     const [charactersArr, setCharacters] = useState([])
@@ -12,6 +13,8 @@ const CharacterList = (props) => {
     const characterNameRef = useRef({});
     const ClassRef = useRef({});
     const raceRef = useRef({});
+    const levelRef = useRef({});
+
 
     useEffect(async () => {
         const result = await getCharacter(props?.currentUser?.userName)
@@ -38,11 +41,11 @@ const CharacterList = (props) => {
     }
 
     const giveLife = async () => {
-        if (!characterNameRef.current.value || !ClassRef.current.value || !raceRef.current.value) {
+        if (!characterNameRef.current.value || !ClassRef.current.value || !raceRef.current.value || !levelRef.current.value) {
             alert("Fill all inputs")
             return
         }
-        const character = { userName: props.currentUser.userName, name: characterNameRef.current.value, profession: ClassRef.current.value, race: raceRef.current.value }
+        const character = { userName: props.currentUser.userName, name: characterNameRef.current.value, profession: ClassRef.current.value, race: raceRef.current.value, level: levelRef.current.value }
         const result = await createCharacter(character)
         if (result.data.message === "Character Added") {
             setShowInputs(false)
@@ -50,6 +53,9 @@ const CharacterList = (props) => {
             await setCharacters(result2.data.character)
         }
     }
+
+
+
     /////////Jsx///////////
     return (
         <div>
@@ -64,6 +70,8 @@ const CharacterList = (props) => {
                     <input type="text" ref={ClassRef} />
                     <label>Race</label>
                     <input type="text" ref={raceRef} />
+                    <label>Level</label>
+                    <input type="text" ref={levelRef} />
                     <button type="button" className="btn btn-dark" onClick={giveLife}>Give me life</button>
                 </div>
             }
@@ -74,7 +82,8 @@ const CharacterList = (props) => {
 const mapStateToProps = (state) => {
     return {
         currentUser: state.currentUser,
-        isAdmin: state.isAdmin
+        isAdmin: state.isAdmin,
+        currentCharacter: state.currentCharacter,
     }
 }
 export default userAuthenticator(connect(mapStateToProps)(CharacterList))

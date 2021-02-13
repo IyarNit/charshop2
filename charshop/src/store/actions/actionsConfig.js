@@ -8,6 +8,10 @@ export const SET_PLAYER_CHARISMA = "SET_PLAYER_CHARISMA"
 export const CURRENT_USER = "CURRENT_USER"
 export const IS_ADMIN = "IS_ADMIN"
 export const NO_MORE_ADMIN = "NO_MORE_ADMIN"
+export const SET_CHARACTER = "SET_CHARACTER"
+export const CLEAR_CHARACTER = "CLEAR_CHARACTER"
+
+
 
 export const setPlayerProf = (payload) => {
     return {
@@ -72,6 +76,20 @@ export const isAdmin = (payload) => {
 export const noLongerAdmin = (payload) => {
     return {
         type: NO_MORE_ADMIN,
+        payload: payload
+    }
+}
+
+export const setCharacter = (payload) => {
+    return {
+        type: SET_CHARACTER,
+        payload: payload
+    }
+}
+
+export const clearCharacter = (payload) => {
+    return {
+        type: CLEAR_CHARACTER,
         payload: payload
     }
 }

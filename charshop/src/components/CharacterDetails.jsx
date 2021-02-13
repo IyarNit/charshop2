@@ -1,16 +1,33 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { updateCharacterDetails, getCharacterDetails } from "../axiosCalls/axioscalls"
-
-const CharacterDetails = () => {
+import { connect } from "react-redux"
+import { withRouter } from "react-router-dom"
+const CharacterDetails = (props) => {
     ////////Hooks////////////
-    const playerName = useRef("")
-    const playerClass = useRef("")
-    const playerLevel = useRef("")
-    const race = useRef("")
-    const background = useRef("")
+    console.log(props)
     const characterName = useRef("")
+    const playerClass = useRef("")
+    const race = useRef("")
+    const playerLevel = useRef("")
+    const background = useRef("")
     const alignment = useRef("")
     const experiencePoints = useRef("")
+
+    useEffect(async () => {
+        if (props?.currentCharacter) {
+            characterName.current.value = props?.currentCharacter?.name
+            playerClass.current.value = props?.currentCharacter?.profession
+            race.current.value = props?.currentCharacter?.race
+            playerLevel.current.value = props?.currentCharacter?.level
+
+
+
+            console.log("some axios will og here")
+        } else {
+            // on refresh props will not have the character so it either redirect to character list and then they choose or we need to improve our refresh function in app.jsx
+            props.history.push("/characters")
+        }
+    }, []);
 
     ////////Functions////////////
 
@@ -21,7 +38,7 @@ const CharacterDetails = () => {
             <div className='row centerText'>
                 <div className='col'>
                     <label for='charNameBox' className='form-label'>Character Name</label>
-                    <input type="text" ref={characterName} id='charNameBox' className='form-control' />
+                    <input type="text" ref={characterName} id='charNameBox' className='form-control' name="charName" onBlur={(e) => { updateCharacterDetails(props.currentUser.userName, props.currentCharacter.name, characterName.current.value, e?.target?.name) }} />
                 </div>
                 <div className='col'>
                     <label for='classBox' className='form-label'>Class</label>
@@ -39,7 +56,7 @@ const CharacterDetails = () => {
             <div className="row centertext">
                 <div className='col'>
                     <label for='backgroundBox' className='form-label'>Background</label>
-                    <input type="text" ref={background} id='backgroundBox' className='form-control' />
+                    <input type="text" ref={background} id='backgroundBox' className='form-control' name="background" onBlur={(e) => { updateCharacterDetails(props.currentUser.userName, props.currentCharacter.name, background.current.value, e?.target?.name) }} />
                 </div>
                 <div className='col'>
                     <label for='AlignmentBox' className='form-label'>Alignment</label>
@@ -53,4 +70,11 @@ const CharacterDetails = () => {
         </div>
     )
 }
-export default CharacterDetails 
+const mapStateToProps = (state) => {
+    return {
+        currentUser: state.currentUser,
+        isAdmin: state.isAdmin,
+        currentCharacter: state.currentCharacter,
+    }
+}
+export default withRouter(connect(mapStateToProps)(CharacterDetails))

@@ -1,8 +1,5 @@
 import axios from "axios"
 
-
-
-
 const getCharacter = async (userName) => {
     console.log("get character ", userName)
     if (!userName) {
@@ -61,20 +58,20 @@ const deleteCharacter = async (character) => {
         console.error("catch", error);
     }
 }
-const updateCharacterDetails = async (character) => {
-    // this updates the location of the character in the different rooms?
-    // try {
-    //     const url = `http://localhost:9876/characterDetails`
-    //     // console.log(character)
-    //     const result = await axios.post(url, { email: character.email, location: character.location }, { headers: { "Content-Type": "application/json" } })
-    //     if (result.data.message === "update succesful") {
-    //         // need to decide what to do upon failure or success
-    //         return
-    //     }
-    // }
-    // catch (error) {
-    //     console.error("catch", error);
-    // }
+const updateCharacterDetails = async (userName, charName, detail, detailtype) => {
+
+    try {
+        const url = `http://localhost:9876/characterDetails`
+        // console.log(detail)
+        const result = await axios.post(url, { userName: userName, charName: charName, detail: detail, detailtype: detailtype }, { headers: { "Content-Type": "application/json" } })
+        if (result.data.message === "update succesful") {
+            // need to decide what to do upon failure or success
+            return
+        }
+    }
+    catch (error) {
+        console.error("catch", error);
+    }
 }
 
 
