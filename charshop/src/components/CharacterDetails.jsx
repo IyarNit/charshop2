@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 const CharacterDetails = (props) => {
     ////////Hooks////////////
-    console.log(props)
+    console.log(props,"check")
     const characterName = useRef("")
     const playerClass = useRef("")
     const race = useRef("")
