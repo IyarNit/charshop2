@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const getCharacter = async (userName) => {
+const getCharacter = async (userName, charname) => {
     console.log("get character ", userName)
     if (!userName) {
         return
@@ -8,7 +8,7 @@ const getCharacter = async (userName) => {
     try {
         const url = `http://localhost:9876/characters`
         // console.log(character)
-        const result = await axios.get(url, { headers: { "Content-Type": "application/json", "username": userName } })
+        const result = await axios.get(url, { headers: { "Content-Type": "application/json", "username": userName, charname: charname || null } })
         if (result.data.message === "Character Located") {
             // need to decide what to do upon failure or success
             return result
@@ -64,10 +64,11 @@ const updateCharacterDetails = async (userName, charName, detail, detailtype) =>
         const url = `http://localhost:9876/characterDetails`
         // console.log(detail)
         const result = await axios.post(url, { userName: userName, charName: charName, detail: detail, detailtype: detailtype }, { headers: { "Content-Type": "application/json" } })
-        if (result.data.message === "update succesful") {
-            // need to decide what to do upon failure or success
-            return
-        }
+
+
+        // need to decide what to do upon failure or success
+        return result
+
     }
     catch (error) {
         console.error("catch", error);

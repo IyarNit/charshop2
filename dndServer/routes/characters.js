@@ -5,7 +5,17 @@ require("dotenv").config();
 
 router.get("/characters", async (req, res, next) => {
     try {
-        console.log(req.headers.username)
+        // console.log(req.headers.username)
+        // console.log(req.headers.charname)
+        if (req.headers.charname !== "null") {
+            const userName = req.headers.username
+            const characterName = req.headers.charname
+            const connectionToMongoDB = await pool();
+            const collection = await connectionToMongoDB.db(process.env.DB_NAME).collection(process.env.CHARACTER_COLLECTION)
+            const foundCharacters = await collection.find({ userName: userName, name: characterName }).toArray();
+            // console.log(foundCharacters, "foundCharacters")
+            return res.json({ message: "Character Located", character: foundCharacters })
+        }
         const userName = req.headers.username
         // console.log(enemie)
         const connectionToMongoDB = await pool();
