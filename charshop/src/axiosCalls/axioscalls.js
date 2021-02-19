@@ -1,14 +1,13 @@
 import axios from "axios"
 
-const getCharacter = async (userName, charname) => {
-    console.log("get character ", userName)
+const getCharacter = async (userName, charId) => {
+    // console.log("get character ", userName)
     if (!userName) {
         return
     }
     try {
         const url = `http://localhost:9876/characters`
-        // console.log(character)
-        const result = await axios.get(url, { headers: { "Content-Type": "application/json", "username": userName, charname: charname || null } })
+        const result = await axios.get(url, { headers: { "Content-Type": "application/json", "username": userName, charId: charId || "null" } })
         if (result.data.message === "Character Located") {
             // need to decide what to do upon failure or success
             return result

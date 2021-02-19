@@ -19,22 +19,24 @@ const CharacterDetails = (props) => {
         await init()
     }, []);
     // init bug if value changes and u nove a page an error occures
+    // if no props.currentcharacter it loads wrong character
     ////////Functions////////////
     const init = async () => {
-        const result = await getCharacter(props?.currentUser?.userName, props?.currentCharacter?.name)
-        // console.log(result?.data?.character[0])
+        const result = await getCharacter(props?.currentUser?.userName, props?.currentCharacter?._id)
+        // props?.currentCharacter?.name requests the old name on rerun
+        console.log(result?.data?.character[0])
         character.splice(0, character.length)
         character.push(result?.data?.character[0])
         // console.log(character[0])
         const char = character[0]
-        // console.log(char)
-        characterName.current.value = char.name || ""
-        playerClass.current.value = char.profession || ""
-        playerLevel.current.value = char.level || ""
-        race.current.value = char.race || ""
-        background.current.value = char.background || ""
-        alignment.current.value = char.alignment || ""
-        experiencePoints.current.value = char.xp || ""
+        console.log(char)
+        characterName.current.value = char?.name || ""
+        playerClass.current.value = char?.profession || ""
+        playerLevel.current.value = char?.level || ""
+        race.current.value = char?.race || ""
+        background.current.value = char?.background || ""
+        alignment.current.value = char?.alignment || ""
+        experiencePoints.current.value = char?.xp || ""
     }
     const updater = async (userNameFromProp, characterName, newValue, e) => {
         // console.log(userNameFromProp, characterName, newValue, e)

@@ -1,21 +1,24 @@
 const pool = require("../pool/MongoConnection")
 const express = require("express");
+const { ObjectId } = require("mongodb");
 const router = express.Router();
 require("dotenv").config();
 
 router.get("/characters", async (req, res, next) => {
     try {
-        // console.log(req.headers.username)
-        // console.log(req.headers.charname)
-        if (req.headers.charname !== "null") {
+        console.log(req.headers.username)
+        console.log(req.headers.charid)
+        if (req.headers.charid !== "null") {
+            console.log("im here2")
             const userName = req.headers.username
-            const characterName = req.headers.charname
+            const characterId = req.headers.charid
             const connectionToMongoDB = await pool();
             const collection = await connectionToMongoDB.db(process.env.DB_NAME).collection(process.env.CHARACTER_COLLECTION)
-            const foundCharacters = await collection.find({ userName: userName, name: characterName }).toArray();
-            // console.log(foundCharacters, "foundCharacters")
+            const foundCharacters = await collection.find({ userName: userName, _id:ObjectId(characterId) }).toArray();
+            console.log(foundCharacters, "foundCharacters")
             return res.json({ message: "Character Located", character: foundCharacters })
         }
+        console.log("im here")
         const userName = req.headers.username
         // console.log(enemie)
         const connectionToMongoDB = await pool();
