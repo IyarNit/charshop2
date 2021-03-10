@@ -90,5 +90,53 @@ const getCharacterDetails = async (character) => {
     // }
 }
 
+const getAbilityComps = async (userName, charId, charName) => {
+    console.log(userName, charId, charName)
+    // return
+    if (!userName || !charId) {
+        // alert("something is wrong")
+        return
+    }
+    try {
+        // console.log("called")
+        const url = `http://localhost:9876/getAbilityMods`
+        // console.log(userName, CharId))
+        const result = await axios.post(url, { userName: userName, charId: charId }, { headers: { "Content-Type": "application/json" } })
+        if (result.data.message === "Retrieval succesful") {
+            // console.log(result)
+            return result.data
+        }
+        if (result.data.message === "Retrieval unsuccesful") {
 
-export { getCharacter, createCharacter, deleteCharacter, updateCharacterDetails, getCharacterDetails, }
+            return null
+        }
+
+    }
+    catch (error) {
+        console.error("catch", error);
+    }
+
+}
+
+
+const updateAbilityComps = async (userName, charId, charName, abilities) => {
+    if (!userName || !charId, !abilities) {
+        alert("something is wrong")
+        return
+    }
+    console.log(userName, charId, charName, "in post")
+    try {
+        const url = `http://localhost:9876/updateAbilityMods`
+        // console.log(userName, CharId))
+        const result = await axios.post(url, { userName: userName, charId: charId, abilities }, { headers: { "Content-Type": "application/json" } })
+        if (result.data.message === "Update Successful") {
+
+            return result
+        }
+    }
+    catch (error) {
+        console.error("catch", error);
+    }
+
+}
+export { getCharacter, createCharacter, deleteCharacter, updateCharacterDetails, getCharacterDetails, getAbilityComps, updateAbilityComps }

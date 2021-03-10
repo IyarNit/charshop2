@@ -5,7 +5,7 @@ import { SET_PLAYER_PROFICIENCY, SET_PLAYER_STRENGHT, SET_PLAYER_DEXTERITY, SET_
 const initState = {
     playerProficiency: null,
     playerStrenghtMod: "",
-    playerDextirityMod: "",
+    playerDexterityMod: "",
     playerConstitutionMod: "",
     playerIntelligenceMod: "",
     playerWisdomMod: "",
@@ -40,7 +40,7 @@ function reducer(state = initState, action) {
         case SET_PLAYER_DEXTERITY: {
             const num = Number(action.payload)
             return {
-                ...state, playerDextirityMod: num
+                ...state, playerDexterityMod: num
             };
         } case SET_PLAYER_CONSTITUTION: {
             const num = Number(action.payload)

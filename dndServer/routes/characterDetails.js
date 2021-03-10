@@ -4,11 +4,6 @@ const router = express.Router();
 require("dotenv").config();
 
 router.post("/characterDetails", async (req, res, next) => {
-    // const { userName, charName, detail, detailtype }
-    // const { userName, charName, profession, race, level, background, alignment, xp } = req.body
-
-
-    // console.log(req.body, "req.body")
     const userName = req.body.userName
     const name = req.body.charName
     const detail = req.body.detail
@@ -17,7 +12,7 @@ router.post("/characterDetails", async (req, res, next) => {
         const connectionToMongoDB = await pool();
         const collection = await connectionToMongoDB.db(process.env.DB_NAME).collection(process.env.CHARACTER_COLLECTION)
         const foundCharacters = await collection.find({ userName: userName, name: name }).toArray();
-        console.log(foundCharacters, "foundCharacters")
+        // console.log(foundCharacters, "foundCharacters")
         if (detailType === "name") {
             collection.updateOne(
                 { userName: userName, name: name },
@@ -29,7 +24,7 @@ router.post("/characterDetails", async (req, res, next) => {
                 }
             )
             const foundCharacter = await collection.find({ userName: userName, name: detail }).toArray();
-            console.log(foundCharacter, "foundCharacter")
+            // console.log(foundCharacter, "foundCharacter")
 
             return res.json({ message: "update succesful" })
         }

@@ -15,7 +15,7 @@ const MongoDbConnection = async () => {
     }
     catch (error) {
         console.log(error.message)
-        console.log("dfsdfsdf")
+     
 
         process.exit(1)
     }

@@ -2,9 +2,10 @@ import React, { useRef, useEffect, useState } from 'react';
 import { updateCharacterDetails, getCharacterDetails, getCharacter } from "../axiosCalls/axioscalls"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
+
 const CharacterDetails = (props) => {
     ////////Hooks////////////
-    console.log("CharacterDetails", props)
+    // console.log("CharacterDetails", props)
     const characterName = useRef("")
     const playerClass = useRef("")
     const race = useRef("")
@@ -16,6 +17,10 @@ const CharacterDetails = (props) => {
     const [character, setCharacter] = useState([])
 
     useEffect(async () => {
+        if (!props.currentCharacter) {
+            props.history.push("/Characters")
+            return
+        }
         await init()
     }, []);
     // init bug if value changes and u nove a page an error occures
@@ -24,12 +29,12 @@ const CharacterDetails = (props) => {
     const init = async () => {
         const result = await getCharacter(props?.currentUser?.userName, props?.currentCharacter?._id)
         // props?.currentCharacter?.name requests the old name on rerun
-        console.log(result?.data?.character[0])
+        // console.log(result?.data?.character[0])
         character.splice(0, character.length)
         character.push(result?.data?.character[0])
         // console.log(character[0])
         const char = character[0]
-        console.log(char)
+        // console.log(char)
         characterName.current.value = char?.name || ""
         playerClass.current.value = char?.profession || ""
         playerLevel.current.value = char?.level || ""
@@ -38,6 +43,7 @@ const CharacterDetails = (props) => {
         alignment.current.value = char?.alignment || ""
         experiencePoints.current.value = char?.xp || ""
     }
+
     const updater = async (userNameFromProp, characterName, newValue, e) => {
         // console.log(userNameFromProp, characterName, newValue, e)
         const result = await updateCharacterDetails(userNameFromProp, characterName, newValue, e)
@@ -84,6 +90,7 @@ const CharacterDetails = (props) => {
         </div>
     )
 }
+
 const mapStateToProps = (state) => {
     return {
         currentUser: state.currentUser,

@@ -6,19 +6,17 @@ require("dotenv").config();
 
 router.get("/characters", async (req, res, next) => {
     try {
-        console.log(req.headers.username)
-        console.log(req.headers.charid)
+        // console.log(req.headers.username)
+        // console.log(req.headers.charid)
         if (req.headers.charid !== "null") {
-            console.log("im here2")
             const userName = req.headers.username
             const characterId = req.headers.charid
             const connectionToMongoDB = await pool();
             const collection = await connectionToMongoDB.db(process.env.DB_NAME).collection(process.env.CHARACTER_COLLECTION)
             const foundCharacters = await collection.find({ userName: userName, _id:ObjectId(characterId) }).toArray();
-            console.log(foundCharacters, "foundCharacters")
+            // console.log(foundCharacters, "foundCharacters")
             return res.json({ message: "Character Located", character: foundCharacters })
         }
-        console.log("im here")
         const userName = req.headers.username
         // console.log(enemie)
         const connectionToMongoDB = await pool();
@@ -26,7 +24,7 @@ router.get("/characters", async (req, res, next) => {
         const foundCharacters = await collection.find({ userName: userName }).toArray();
 
 
-        console.log(foundCharacters)
+        // console.log(foundCharacters)
 
         if (!foundCharacters || foundCharacters.length === 0) return res.json({ message: "No Characters found. Create a New One!" })
         return res.json({ message: "Character Located", character: foundCharacters })
@@ -48,7 +46,7 @@ router.post("/characters", async (req, res, next) => {
         const connectionToMongoDB = await pool();
         const collection = await connectionToMongoDB.db(process.env.DB_NAME).collection(process.env.CHARACTER_COLLECTION)
         const characterToAdd = { userName: userName, characterName: name, class: profession, race: race, level: level }
-        console.log(characterToAdd)
+        // console.log(characterToAdd)
         const data = await collection.insertOne(character);
         if (data.length === 0) return res.json({ message: "data Fetch Error" })
         return res.json({ message: "Character Added", data: data })
@@ -63,7 +61,7 @@ router.post("/characters", async (req, res, next) => {
 
 router.delete("/charactersDelete", async (req, res, next) => {
     try {
-        console.log(req.body)
+        // console.log(req.body)
         const { character } = req.body
         const connectionToMongoDB = await pool();
         const collection = await connectionToMongoDB.db(process.env.DB_NAME).collection(process.env.CHARACTER_COLLECTION)

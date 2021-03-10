@@ -12,6 +12,8 @@ const logRegRoute = require("./routes/RegisterLogin")
 const userAuth = require("./routes/userAuth")
 const characters = require("./routes/characters")
 const characterDetails = require("./routes/characterDetails")
+const abilityMods = require("./routes/abilityMods")
+
 
 
 // routes
@@ -19,6 +21,8 @@ app.use("/", logRegRoute);
 app.use("/", userAuth);
 app.use("/", characters);
 app.use("/", characterDetails);
+app.use("/", abilityMods);
+
 
 
 
